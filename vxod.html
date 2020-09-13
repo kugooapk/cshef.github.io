@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSHEF</title>
+    <link rel="stylesheet" href="css/vzod.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+     <center><div class="vzod">
+    <h1>CSHEF</h1>
+    <p>Нет аккаунта пишите<br>cshef95@inbox.ru</p>
+    <input id="login" class="ilogin" placeholder="Введите логин"><br>
+    <input id="password" class="ipasswoed" placeholder="Введите пароль"><br>
+    <center><button id="vzod" class="vxod">ВХОД</button>
+    </div>
+   
+</body>
+</html>
+
+<script>
+            $(window).on("load",function(){
+            $(".loader-container").fadeOut(1000);
+
+        });
+
+        document.getElementById('vzod').onclick = function() {
+        let login = document.getElementById('login').value;
+        let password = document.getElementById('password').value;
+
+        if (login == "vlad" && password == "vlad") {
+            document.location.href = "vlad";
+        } else {
+            swal("Ошибка", "Аккаунт не найден!", "error");
+        }
+    };
+</script>

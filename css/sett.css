@@ -1,0 +1,51 @@
+.b1 {
+  position: relative;
+  width: 100px;
+  background-color: #72fd00;
+  height: 30px;
+  left: 300px;
+  top: 100px;
+}
+
+.b2 {
+  position: relative;
+  width: 100px;
+  background-color: #e40202;
+  height: 30px;
+  left: 300px;
+  top: 100px;
+}
+
+.b3 {
+    position: relative;
+    width: 100px;
+    height: 30px;
+    background-color: green;
+    top: 250px;
+    left: 400px;
+}
+
+.kon1 {
+    position: relative;
+    top: 200px;
+    width: 500px;
+    height: 30px;
+}
+
+.kb {
+    position: relative;
+    top: 60px;
+    left: 200px;
+}
+
+
+.vr {
+    text-decoration: none;
+    color: azure;
+}
+
+html {
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+}

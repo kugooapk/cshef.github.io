@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSHEF</title>
+    <link rel="stylesheet" href="css/sett.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+     <a class="vr" href="vlad.html">Вернуться назад</a><dl>
+
+        <p class="kb">Заработано: 0р</p>
+    <input id="promo" class="kon1" placeholder="Введите конфиг">
+     <button id="a" class="b1">Начать</button>
+     <button id="k" class="b2">Закончить</button><dl>
+     <button id="save" class="b3">Save</button>
+</body>
+</html>
+
+
+<style>
+body {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif; background-color: #028c96; 
+}
+</style>
+<script>
+
+    var button = document.getElementById("save");
+    button.addEventListener('click', function() {
+        Swal.fire({
+  title: 'Вы уверены?',
+  text: "Вы уверены что хотите сохранить?",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Да!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Успешно!',
+      'Сохранено!',
+      'success'
+    )
+  }
+})
+});
+
+var button = document.getElementById("a");
+    button.addEventListener('click', function() {
+      swal("Успешно!", "Вы успешно начали!", "success");
+});
+
+var button = document.getElementById("k");
+    button.addEventListener('click', function() {
+      swal("Успешно!", "Вы закончили!", "success");
+});
+
+
+
+
+  </script>
