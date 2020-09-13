@@ -21,13 +21,13 @@
     </a>
     </div>
 
-    <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Промокодов: 2  <button id="p" class="jer">Показать</button><button id="p1" class="jer1">Показать</button></h1>
+    <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Промокодов: 2  <button id="p" class="jer">Показать</button></h1>
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Коэффициент: 2.7%</h1>
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Игр: 1</h1>
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Баланс: 3,58р</h1>
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Заработано: 3,58р</h1>
 
-    <a class="settings" href="settings1">Настройки</a>
+    <a class="settings" href="settings2.html">Настройки</a>
     <input id="promo" class="promo" placeholder="Введите промокод">
     <button id="pro" class="akt">Активировать</button>
 </body>
@@ -42,9 +42,7 @@
         document.getElementById('pro').onclick = function() {
         let promo = document.getElementById('promo').value;
 
-        if (promo == "FQWCBP") {
-            swal("Успешно!", "Успешно начался!", "success");
-        } else if (promo = "FYRDFG") {
+        if (promo == "KHTBG") {
             swal("Успешно!", "Успешно начался!", "success");
         } else {
             swal("Ошибка", "Аккаунт не найден!", "error");
@@ -52,7 +50,7 @@
     };
     var button = document.getElementById("p");
     button.addEventListener('click', function() {
-        swal("FQWCBP", "", "warning");
+        swal("KHTBG", "", "warning");
 });
 
 var button = document.getElementById("p1");
