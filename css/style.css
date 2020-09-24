@@ -16,11 +16,17 @@ body {
 
     
 }
+
+
 img{
     width: 100%;
     max-width: 800px;
     padding: 20px 40px;
 }
+
+
+
+
 
 .jer {
     position: relative; bottom: 10px; width: 100px; height: 30px; background: #ddcf0d; border: 0; color: white;
