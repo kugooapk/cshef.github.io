@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSHEF</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/button.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 </head>
@@ -21,20 +23,32 @@
     </a>
     </div>
 
-    <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Промокодов: 2  <button id="p" class="jer">Показать</button><button id="p1" class="jer1">Показать</button></h1>
+    <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Промокодов: 0  <!--<button id="p" class="jer">Показать</button><button id="p1" class="jer1">Показать</button></h1>-->
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Коэффициент: 0.7%</h1>
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Игр: 0</h1>
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Баланс: 0р</h1>
     <h1 style="position: relative; left: 400px; bottom: 1000px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Заработано: 0р</h1>
 
-    <button id="dop" class="dop">+ Доп.выплату</button>
+    <a href="oplata/id4542101.html" style="position: relative; bottom: 1000px; left: 400px;"><button id="button-1" class="button">
+        <i class="fa fa-credit-card"></i>
+        <span>Доп.Выплату</span>
+      </button></a>
     <input id="promo" class="promo" placeholder="Введите промокод">
     <button id="akt" class="akt">Активировать</button>
 </body>
 </html>
 
 
+
+
+
 <script>
+
+</script>
+
+
+<script>
+    
             $(window).on("load",function(){
             $(".loader-container").fadeOut(1000);
 
@@ -44,25 +58,25 @@
     document.getElementById('akt').onclick = function() {
         let promo1 = document.getElementById('promo').value;
 
-        if (promo1 == 'GHDQE1') {
+        if (promo1 == 'FQWCBP') {
             document.location.href = "https://cshef.github.io/settings1";
-        } else if (promo1 == 'KOLJ91') {
+        } else if (promo1 == 'FYRDFG') {
             document.location.href = "https://cshef.github.io/settings1";
         } else {
             Swal.fire('Ошибка','Промокод не верный','error')
         }
     };
-    var button = document.getElementById("p");
-    button.addEventListener('click', function() {
-        Swal.fire('GHDQE1','','warning')
+    //var button = document.getElementById("p");
+    //button.addEventListener('click', function() {
+        //Swal.fire('CASASW','','warning')
 
-});
+//});
 
-var button1 = document.getElementById("p1");
-    button1.addEventListener('click', function() {
-        Swal.fire('KOLJ91','','warning')
+//var button1 = document.getElementById("p1");
+    //button1.addEventListener('click', function() {
+        //Swal.fire('FDGRTF','','warning')
 
-});
+//});
 var red = document.getElementById("dop");
     red.addEventListener('click', function() {
         Swal.fire({
@@ -73,6 +87,7 @@ var red = document.getElementById("dop");
   timer: 1500
 })
 });
+
 
 
 </script>

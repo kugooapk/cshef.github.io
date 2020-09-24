@@ -1,182 +1,271 @@
-<!DOCTYPE html>
-<html>
-	<head>
-        <title>taper</title>
-        <link rel="stylesheet" href="css/rulet.css">
-	</head>
-	<body>
-		<div id="main"> 
-        <div id="mxwidth">
-            <ul id="boxes"></ul>
-       </div>
-       <div id="winTop">
-       </div>
-	   <div id="winBottom">
-       </div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> 
+
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="roulette_container">
+                  <div class="roulette">
+                    <center><img src="https://freshcoal.com/images/main/42db67b6-9dd1-4bfe-b478-8829c1.png" width="130"></center>
+                        <center><img src="https://freshcoal.com/images/main/e25bd6ef-8c67-497b-be71-48923b.png" width="130"></center>
+                            <center><img src="https://freshcoal.com/images/main/d0f793ff-b041-427c-bc24-440834.png" width="130"></center>
+                                <center><img src="https://freshcoal.com/images/main/2ab25358-deaa-46b7-b351-d9732a.png" width="130"></center>
+                                    <center><img src="https://freshcoal.com/images/main/23378bd2-28e5-4d7e-8d39-621b73.png" width="130"></center>
+                                        <center><img src="https://freshcoal.com/images/main/7ceb88b2-7f5f-4399-abb9-706825.png" width="130"></center>
+                                            <center><img src="https://freshcoal.com/images/main/664dd492-3fcd-443b-9e61-4c7ebd.png" width="130"></center>
+                                                <center><img src="https://freshcoal.com/images/main/87324464-1700-468f-8333-e7779e.png" width="130"></center>
+                  </div>
+                </div>
+                <div class="col-md-12 text-center mt-4">
+                  <button class="btn btn-success" id="button_buy">
+                                    Крутить
+                                </button>
+                </div>
+                <div class="col-md-12 text-center mt-4">
+                  <p id="win" class="text-center mx-auto"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-    <button onclick="start()" class="mainbutt">Крутить</button>
-	<div class="blscreen">
-		<div class="winblock">
-			<button class="close">×</button>
-			<h3>Ваш выйгрыш</h3>
-			<div class="addimg">
-				<img alt="wins">
-	  	</div>
-	  	<h4>Повышение звания</h4>
-	  	<p>Стоимость: <span>2000р</span></p>
-	  	<input type="name" placeholder="Ваш ник" class="wininp">
-	  	    <button onclick="start()" class="winbutt">Крутить еще</button>
-		</div>
-	</div>
+  </div>
+  <script>
+      (function($) {
+	var Roulette = function(options) {
+		var defaultSettings = {
+			maxPlayCount : null, // x >= 0 or null
+			speed : 10, // x > 0
+			stopImageNumber : null, // x >= 0 or null or -1
+			rollCount : 3, // x >= 0
+			duration : 3, //(x second)
+			stopCallback : function() {
+			},
+			startCallback : function() {
+			},
+			slowDownCallback : function() {
+			}
+		}
+		var defaultProperty = {
+			playCount : 0,
+			$rouletteTarget : null,
+			imageCount : null,
+			$images : null,
+			originalStopImageNumber : null,
+			totalHeight : null,
+			topPosition : 0,
 
-	</body>
-</html>
+			maxDistance : null,
+			slowDownStartDistance : null,
 
-<script>
-    var image = new Array();
-image[1] = "https://pp.userapi.com/c851532/v851532508/15281f/HID0UQTAJGM.jpg"
-image[2] = "https://pp.userapi.com/c851532/v851532508/152826/wjzAUrH-pdw.jpg"
-image[3] = "https://pp.userapi.com/c851532/v851532508/15282d/vovZIefw-pU.jpg"
-image[4] = "https://pp.userapi.com/c851532/v851532508/152834/UuRT1wYIYRA.jpg"
-image[5] = "https://pp.userapi.com/c851532/v851532508/15283b/aPRqEZjQyBs.jpg"
-image[6] = "https://pp.userapi.com/c851532/v851532508/152842/wx6nV0vdCSY.jpg"
-image[7] = "https://pp.userapi.com/c851532/v851532508/152849/I6lkylgXSXM.jpg"
-image[8] = "https://raw.githubusercontent.com/skryshtafovych/Lottery-html5/master/star.png"
-image[9] = "https://raw.githubusercontent.com/skryshtafovych/Lottery-html5/master/flower.png"
-image[10] = "https://raw.githubusercontent.com/skryshtafovych/Lottery-html5/master/coin.png"
-image[11] = "https://raw.githubusercontent.com/skryshtafovych/Lottery-html5/master/mshroom.png"
-image[12] = "https://raw.githubusercontent.com/skryshtafovych/Lottery-html5/master/chomp.png"
-image[13] = "https://icon-icons.com/icons2/206/PNG/128/Flower_-_Fire_24653.png"
-image[14] = "http://img.informer.com/icons_mac/png/128/218/218340.png"
-image[15] = "http://www.iconninja.com/files/817/63/651/orange-monster-icon.png"
+			isRunUp : true,
+			isSlowdown : false,
+			isStop : false,
 
-for (let i = 1; i < image.length; i++) {
-$("#boxes").append("<li class='tape'><img src="+image[i]+" alt="+i+" class='tape-img'></li>");
+			distance : 0,
+			runUpDistance : null,
+			slowdownTimer : null,
+			isIE : navigator.userAgent.toLowerCase().indexOf('msie') > -1 // TODO IE
+		};
+		var p = $.extend({}, defaultSettings, options, defaultProperty);
+
+		var reset = function() {
+			p.maxDistance = defaultProperty.maxDistance;
+			p.slowDownStartDistance = defaultProperty.slowDownStartDistance;
+			p.distance = defaultProperty.distance;
+			p.isRunUp = defaultProperty.isRunUp;
+			p.isSlowdown = defaultProperty.isSlowdown;
+			p.isStop = defaultProperty.isStop;
+			p.topPosition = defaultProperty.topPosition;
+
+			clearTimeout(p.slowDownTimer);
+		}
+
+		var slowDownSetup = function() {
+			if(p.isSlowdown){
+				return;
+			}
+			p.slowDownCallback();
+			p.isSlowdown = true;
+			p.slowDownStartDistance = p.distance;
+			p.maxDistance = p.distance + (2*p.totalHeight);
+			p.maxDistance += p.imageHeight - p.topPosition % p.imageHeight;
+			if (p.stopImageNumber != null) {
+				p.maxDistance += (p.totalHeight - (p.maxDistance % p.totalHeight) + (p.stopImageNumber * p.imageHeight))
+						% p.totalHeight;
+			}
+		}
+
+		var roll = function() {
+			var speed_ = p.speed;
+
+			if (p.isRunUp) {
+				if (p.distance <= p.runUpDistance) {
+					var rate_ = ~~((p.distance / p.runUpDistance) * p.speed);
+					speed_ = rate_ + 1;
+				} else {
+					p.isRunUp = false;
+				}
+
+			} else if (p.isSlowdown) {
+				var rate_ = ~~(((p.maxDistance - p.distance) / (p.maxDistance - p.slowDownStartDistance)) * (p.speed));
+				speed_ = rate_ + 1;
+			}
+
+			if (p.maxDistance && p.distance >= p.maxDistance) {
+				p.isStop = true;
+				reset();
+				p.stopCallback(p.$rouletteTarget.find('img').eq(p.stopImageNumber));
+alert("Номер выиграша: " + p.stopImageNumber);
+				return;
+			}
+			p.distance += speed_;
+			p.topPosition += speed_;
+			if (p.topPosition >= p.totalHeight) {
+				p.topPosition = p.topPosition - p.totalHeight;
+			}
+			// TODO IE
+			if (p.isIE) {
+				p.$rouletteTarget.css('top', '-' + p.topPosition + 'px');
+			} else {
+				// TODO more smooth roll
+				p.$rouletteTarget.css('transform', 'translate(0px, -' + p.topPosition + 'px)');
+			}
+			setTimeout(roll, 1);
+		}
+
+		var init = function($roulette) {
+			$roulette.css({ 'overflow' : 'hidden' });
+			defaultProperty.originalStopImageNumber = p.stopImageNumber;
+			if (!p.$images) {
+				p.$images = $roulette.find('img').remove();
+				p.imageCount = p.$images.length;
+				p.$images.eq(0).bind('load',function(){
+					p.imageHeight = $(this).height();
+					$roulette.css({ 'height' : (p.imageHeight + 'px') });
+					p.totalHeight = p.imageCount * p.imageHeight;
+					p.runUpDistance = 2 * p.imageHeight;
+				}).each(function(){
+					if (this.complete || this.complete === undefined){
+						var src = this.src;
+						// set BLANK image
+						this.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+						this.src = src;
+					}
+				});
+			}
+			$roulette.find('div').remove();
+			p.$images.css({
+				'display' : 'block'
+			});
+			p.$rouletteTarget = $('<div>').css({
+				'position' : 'relative',
+				'top' : '0'
+			}).attr('class',"roulette-inner");
+			$roulette.append(p.$rouletteTarget);
+			p.$rouletteTarget.append(p.$images);
+			p.$rouletteTarget.append(p.$images.eq(0).clone());
+			$roulette.show();
+		}
+
+		var start = function() {
+			p.playCount++;
+			if (p.maxPlayCount && p.playCount > p.maxPlayCount) {
+				return;
+			}
+			p.stopImageNumber = $.isNumeric(defaultProperty.originalStopImageNumber) && Number(defaultProperty.originalStopImageNumber) >= 0 ?
+									Number(defaultProperty.originalStopImageNumber) : Math.floor(Math.random() * p.imageCount);
+			p.startCallback();
+			roll();
+			p.slowDownTimer = setTimeout(function(){
+				slowDownSetup();
+			}, p.duration * 1000);
+		}
+
+		var stop = function(option) {
+			if (!p.isSlowdown) {
+				if (option) {
+					var stopImageNumber = Number(option.stopImageNumber);
+					if (0 <= stopImageNumber && stopImageNumber <= (p.imageCount - 1)) {
+						p.stopImageNumber = option.stopImageNumber;
+					}
+				}
+				slowDownSetup();
+			}
+		}
+		var option = function(options) {
+			p = $.extend(p, options);
+			p.speed = Number(p.speed);
+			p.duration = Number(p.duration);
+			p.duration = p.duration > 1 ? p.duration - 1 : 1;
+			defaultProperty.originalStopImageNumber = options.stopImageNumber;
+		}
+
+		var ret = {
+			start : start,
+			stop : stop,
+			init : init,
+			option : option
+		}
+		return ret;
+	}
+
+	var pluginName = 'roulette';
+	$.fn[pluginName] = function(method, options) {
+		return this.each(function() {
+			var self = $(this);
+			var roulette = self.data('plugin_' + pluginName);
+
+			if (roulette) {
+				if (roulette[method]) {
+					roulette[method](options);
+				} else {
+					console && console.error('Method ' + method + ' does not exist on jQuery.roulette');
+				}
+			} else {
+				roulette = new Roulette(method);
+				roulette.init(self, method);
+				$(this).data('plugin_' + pluginName, roulette);
+			}
+		});
+	}
+})(jQuery);
+
+$(document).ready(function () {
+function randomInteger(min, max) {
+  var rand = min + Math.random() * (max - min)
+  rand = Math.round(rand);
+  return rand;
 }
 
-function start()	{
+let rull = $('div.roulette');
+  var option = {
+    speed: 4,
+    duration: 5,
+    stopImageNumber: 1,
+    startCallback: function() {
+      console.log('start');
+    },
+    slowDownCallback: function() {
+      console.log('slowDown');
+    },
+    stopCallback: function($stopElm) {
+      console.log($stopElm);
+      $('#win').html('<img src="' + $stopElm[0].currentSrc + '" width="130" style="display: block;">');
+    }
+  }
 
-var boxed = 1; // начинаем считать кейсы
-var righ = 0;   // делаем анимацию увеличивая позицию в право
-var speed = Math.floor(Math.random() * (20 - 25 + 1)) + 25;  // Скорость прокрутки рулетки
-var delbox = 164; //Ширина кейса для удаления его
-var tim = setInterval(animated,10); 
- 
-$("button").css("opacity","0.5");
-$(".mainbutt").removeAttr("onclick");
-
-function animated() {
-var imgs = Math.floor(Math.random() * (15 - 1 + 1)) + 1; //Случайная картинка
-
-var child3 = $(".tape:nth-child(1) img");
-var firS = $(".tape:first-child");
-var cons = righ - delbox;	 //считаем на сколько блок зашел за границу
-
-if (righ >= delbox) { 		//если блок за границей
- firS.remove();			// удаляем его
+  rull.roulette('option', option);
   
-$("#boxes").append("<li class='tape'><img src='"+child3.attr("src")+"' title="+imgs+" alt="+child3.attr("alt")+" class='tape-img'></li>"); //Вывод изображения без рандома
-
-//$("#boxes").append("<li class='tape'><img src='"+image[imgs]+"' title="+imgs+" alt="+imgs+" class='tape-img'></li>"); //Вывод изображения с рандома
-
-$('.tape').removeClass('tape_center');
-  righ = cons + speed; 
-  $(".tape").css("right",righ + "px");
- boxed++; // Считаем кол-во блоков		 
- 
-} else {
-if(speed <= 2) {
-    speed -= 0.003;
-} else if (speed <= 6) {
-    speed -= 0.007;
-} else {
-       speed -= 0.02;
-}
-righ += speed;
- $(".tape").css("right",righ + "px");
-}
-if (speed <= 0) {
-clearInterval(tim);
-  $(".tape").animate({right: "78px"},2400);
-$(".addimg img").attr("src"	, child3.attr("src"));
-setTimeout(swi,2500);
-}
-                     
-}
-}
-function swi() {
-
- var nnu = $(".tape:nth-child(3) img").attr("alt");
- $(".mainbutt").attr("onclick","start()");
-  //$(".blscreen").toggle(400);
-  $("button").css("opacity","1");	
-
-$('.tape').addClass('tape_center'); // Выделяем выигрышный вариант
-
-     switch(nnu) {
-    case "1":
-        $(".winblock h4").text("VIP'ка");
-        $(".winblock span").text("300р");
-    break;
-     case "2":
-        $(".winblock h4").text("ADM + VIP");
-        $(".winblock span").text("600р");
-    break;
-     case "3":
-        $(".winblock h4").text("Повышение звания");
-        $(".winblock span").text("100р");
-    break;
-     case "4":
-        $(".winblock h4").text("Префикс");
-        $(".winblock span").text("50р");
-    break;
-     case "5":
-        $(".winblock h4").text("Ник под пароль");
-        $(".winblock span").text("75р");
-    break;
-     case "6":
-        $(".winblock h4").text("Смотритель");
-        $(".winblock span").text("800р");
-    break;
-     case "7":
-        $(".winblock h4").text("Админка");
-        $(".winblock span").text("400р");
-    break;
-     case "8":
-        $(".winblock h4").text("111");
-        $(".winblock span").text("300р");
-    break;
-     case "9":
-        $(".winblock h4").text("222");
-        $(".winblock span").text("600р");
-    break;
-     case "10":
-        $(".winblock h4").text("333");
-        $(".winblock span").text("100р");
-    break;
-     case "11":
-        $(".winblock h4").text("444");
-        $(".winblock span").text("50р");
-    break;
-     case "12":
-        $(".winblock h4").text("555");
-        $(".winblock span").text("75р");
-    break;
-    case "13":
-        $(".winblock h4").text("666");
-        $(".winblock span").text("75р");
-    break;
-}
-}
-//делаем список что выпадает
-$(function () {
-$("span").click(function () {
-     $(".opn").toggle(300);
+$('#button_buy').on('click', function() {
+  rull.roulette('start');
 });
-$(".close,.winbutt").click(function () {
-$(".blscreen").toggle(400);
-})
 });
-
-    </script>
+      </script>

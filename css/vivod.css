@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    background-color: #202020;
+    color: white;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans";
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    color: red;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.name {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+
