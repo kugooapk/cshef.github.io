@@ -17,6 +17,12 @@ body {
     
 }
 
+.buypromo {
+    position: relative;
+    left: 10px;
+    color: #73ff00;
+}
+
 
 img{
     width: 100%;
